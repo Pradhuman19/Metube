@@ -14,13 +14,15 @@ const Feed = () => {
                   Connect with me here
                   </Typography>
       </Box>
+      <Box p={1.4} sx={{overflowY: 'auto',height:'90vh',flex:2}}>
       <Typography
         variant="h4" fontWeight="bold"
         mb={2} sx={{
           color:'white'
         }}
-      >New <span style={{colors:'#F31503'}}>Videos</span>
+      >New <span style={{color:'#F31503'}}>Videos</span>
       </Typography>
+      </Box>
       <Videos />
     </Stack>
   )
