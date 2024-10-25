@@ -12,13 +12,19 @@ const [videos, setVideos] = useState([])
   useEffect(()=>{
     // setVideos(null);
     fetchFromAPI(`search?part=snippet&q=${selectedCategory}`)
-    .then((data)=>{setVideos(data.items)})
+    .then((data) => {
+      // Filter out playlists by checking if kind is not 'youtube#playlist'
+      const filteredResults = data.items.filter(
+        (item) => item.id.kind !== 'youtube#playlist'
+      );
+      setVideos(filteredResults);
+    });
   },[selectedCategory]);
 
   return (
     <Stack sx={{flexDirection:{sx:"column",md:"row"}}}>
       <Box sx={{height:{sx:'auto',md:'92vh'},borderRight:'1px solid #3d3d3d',
-                px:{sx:0,md:2}}}>
+                px:{sx:0,md:4}}}>
                   <SideBar 
                   selectedCategory = {selectedCategory}
                   setSelectedCategory = {setSelectedCategory}
